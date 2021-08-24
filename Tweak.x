@@ -2515,6 +2515,8 @@ static void dyld_image_added(const struct mach_header *mh, intptr_t slide) {
 %end
 
 void init_path_map(Shadow *shadow) {
+    [shadow addPath:@"/User/Applications" restricted:YES];
+    
     // Restrict / by whitelisting
     [shadow addPath:@"/" restricted:YES hidden:NO];
     [shadow addPath:@"/.file" restricted:NO];
@@ -2835,6 +2837,7 @@ void init_path_map(Shadow *shadow) {
         [shadow addPath:@"/usr/lib/bash" restricted:YES];
         [shadow addPath:@"/usr/lib/cycript" restricted:YES];
         [shadow addPath:@"/usr/lib/libmis.dylib" restricted:YES];
+        [shadow addPath:@"/usr/lib/libcycript.dylib" restricted:YES];
     } else {
         [shadow addPath:@"/usr/lib" restricted:YES hidden:NO];
         [shadow addPath:@"/usr/lib/FDRSealingMap.plist" restricted:NO];
