@@ -2207,6 +2207,19 @@ static void dyld_image_added(const struct mach_header *mh, intptr_t slide) {
 
     return %orig;
 }
+
+%hookf(void *,NSClassFromString, NSString *aClassName) {
+    if(aClassName) {
+        NSLog(@"NSClassFromString: %@", aClassName);
+
+        if([_shadow isClassRestricted:aClassName]) {
+            return NULL;
+        }
+    }
+
+    return %orig;
+
+}
 %end
 
 %group hook_libraries
@@ -3243,6 +3256,7 @@ static int hook_dladdr(const void *addr, Dl_info *info) {
         NSString *path = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:info->dli_fname length:strlen(info->dli_fname)];
 
         if([_shadow isImageRestricted:path]) {
+            info->dli_fname = "";
             return 0;
         }
     }

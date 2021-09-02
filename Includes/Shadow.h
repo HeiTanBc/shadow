@@ -35,6 +35,7 @@
 + (NSError *)generateFileNotFoundError;
 
 - (BOOL)isImageRestricted:(NSString *)name;
+- (BOOL)isClassRestricted:(NSString *)name;
 - (BOOL)isPathRestricted:(NSString *)path;
 - (BOOL)isPathRestricted:(NSString *)path partial:(BOOL)partial;
 - (BOOL)isPathRestricted:(NSString *)path manager:(NSFileManager *)fm;

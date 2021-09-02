@@ -1,5 +1,7 @@
-ARCHS := armv7  arm64 
+ARCHS := armv7 arm64
 TARGET := iphone:clang:latest:8.0
+# use obf toolchain
+PREFIX = ~/Library/Developer/Toolchains/LLVM-Obfuscator-Xcode12.xctoolchain/usr/bin/
 
 include $(THEOS)/makefiles/common.mk
 

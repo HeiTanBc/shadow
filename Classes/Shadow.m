@@ -157,6 +157,18 @@
     return error;
 }
 
+- (BOOL)isClassRestricted:(NSString *)name {
+    if(!name || _passthrough) {
+        return NO;
+    }
+
+    if([name hasPrefix:@"HBPreferences"]) {
+        return YES;
+    }
+
+    return NO;
+}
+
 - (BOOL)isImageRestricted:(NSString *)name {
     if(!name || _passthrough) {
         return NO;
